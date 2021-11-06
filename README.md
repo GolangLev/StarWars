@@ -7,6 +7,10 @@
 
 > Repository pattern
 
+> HTML and Css
+
+> JavaScript 
+
 ## Frameworks
 
 - [Gin gonic](https://github.com/gin-gonic/gin)
