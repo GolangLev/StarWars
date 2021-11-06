@@ -34,6 +34,7 @@ func main() {
 		Password: os.Getenv("DB_PASSWORD"),
 		SSLMode:  viper.GetString("db.sslmode"),
 	})
+
 	if err != nil {
 		logrus.Fatalf("failed to initialize db: %s", err.Error())
 	}
