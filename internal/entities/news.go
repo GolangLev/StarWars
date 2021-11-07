@@ -7,3 +7,9 @@ type News struct {
 	SubTitle    string `json:"sub_title" db:"subtitle"`
 	Description string `json:"description" db:"description"`
 }
+
+type UpdateNews struct {
+	Title       *string `json:"title"`
+	SubTitle    *string `json:"sub_title"`
+	Description *string `json:"description"`
+}
