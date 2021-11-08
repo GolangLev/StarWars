@@ -6,6 +6,11 @@ import (
 )
 
 type Games interface {
+	CreateGames(games entities.Game) (int, error)
+	GetAllGames() ([]entities.Game, error)
+	GetGamesById(gameId int) (entities.Game, error)
+	DeleteGames(gameId int) error
+	UpdateGames(gameId int, game entities.UpdateGames) error
 }
 
 type Films interface {
@@ -35,6 +40,7 @@ type Service struct {
 
 func NewService(repo *repository.Repository) *Service {
 	return &Service{
-		News: NewNewsService(repo.News),
+		News:  NewNewsService(repo.News),
+		Games: NewGameService(repo.Games),
 	}
 }
