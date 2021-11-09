@@ -17,6 +17,11 @@ type Films interface {
 }
 
 type Heroes interface {
+	CreateHero(hero entities.Hero) (int, error)
+	GetAllHeroes() ([]entities.Hero, error)
+	GetHeroById(heroId int) (entities.HeroJoin, error)
+	DeleteHero(heroId int) error
+	UpdateHero(heroId int, hero entities.UpdateHero) error
 }
 
 type Fractions interface {
@@ -40,7 +45,8 @@ type Repository struct {
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		News:  NewNewsRepository(db),
-		Games: NewGameRepository(db),
+		News:   NewNewsRepository(db),
+		Games:  NewGameRepository(db),
+		Heroes: NewHeroRepository(db),
 	}
 }

@@ -30,19 +30,33 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			api.PUT("/UpdateNews/:id", h.UpdateNews)
 			api.DELETE("/DeleteNews/:id", h.DeleteNews)
 		}
-	}
 
-	game := router.Group("/")
-	{
-		game.GET("/game", h.GetAllGames)
-		game.GET("/game/:id", h.GetGameById)
-
-		api := game.Group("/api")
+		game := main.Group("/game")
 		{
-			api.POST("/CreateGame", h.CreateGame)
-			api.PUT("/UpdateGame/:id", h.UpdateGame)
-			api.DELETE("/DeleteGame/:id", h.DeleteGame)
+			game.GET("/", h.GetAllGames)
+			game.GET("/:id", h.GetGameById)
+
+			api := game.Group("/api")
+			{
+				api.POST("/CreateGame", h.CreateGame)
+				api.PUT("/UpdateGame/:id", h.UpdateGame)
+				api.DELETE("/DeleteGame/:id", h.DeleteGame)
+			}
 		}
+
+		hero := main.Group("/hero")
+		{
+			hero.GET("/", h.GetAllHeroes)
+			hero.GET("/:id", h.GetHeroById)
+
+			api := hero.Group("/api")
+			{
+				api.POST("/CreateHero", h.CreateHero)
+				api.PUT("/UpdateHero/:id", h.UpdateHero)
+				api.DELETE("/DeleteHero/:id", h.DeleteHero)
+			}
+		}
+
 	}
 
 	return router
