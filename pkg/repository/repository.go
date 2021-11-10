@@ -18,7 +18,7 @@ type Films interface {
 
 type Heroes interface {
 	CreateHero(hero entities.Hero) (int, error)
-	GetAllHeroes() ([]entities.Hero, error)
+	GetAllHeroes() ([]entities.HeroJoin, error)
 	GetHeroById(heroId int) (entities.HeroJoin, error)
 	DeleteHero(heroId int) error
 	UpdateHero(heroId int, hero entities.UpdateHero) error

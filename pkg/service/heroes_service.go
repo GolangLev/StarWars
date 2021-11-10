@@ -17,7 +17,7 @@ func (h *HeroService) CreateHero(hero entities.Hero) (int, error) {
 	return h.repo.CreateHero(hero)
 }
 
-func (h *HeroService) GetAllHeroes() ([]entities.Hero, error) {
+func (h *HeroService) GetAllHeroes() ([]entities.HeroJoin, error) {
 	return h.repo.GetAllHeroes()
 }
 
