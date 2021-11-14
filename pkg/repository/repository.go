@@ -14,6 +14,11 @@ type Games interface {
 }
 
 type Films interface {
+	CreateFilm(film entities.Film) (int, error)
+	GetAllFilms() ([]entities.Film, error)
+	GetFilmById(filmId int) (entities.Film, error)
+	DeleteFilm(filmId int) error
+	UpdateFilm(filmId int, film entities.UpdateFilm) error
 }
 
 type Heroes interface {
@@ -48,5 +53,6 @@ func NewRepository(db *sqlx.DB) *Repository {
 		News:   NewNewsRepository(db),
 		Games:  NewGameRepository(db),
 		Heroes: NewHeroRepository(db),
+		Films:  NewFilmsRepository(db),
 	}
 }

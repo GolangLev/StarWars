@@ -14,6 +14,11 @@ type Games interface {
 }
 
 type Films interface {
+	CreateFilm(film entities.Film) (int, error)
+	GetAllFilms() ([]entities.Film, error)
+	GetFilmById(filmId int) (entities.Film, error)
+	DeleteFilm(filmId int) error
+	UpdateFilm(filmId int, film entities.UpdateFilm) error
 }
 
 type Heroes interface {
@@ -48,5 +53,6 @@ func NewService(repo *repository.Repository) *Service {
 		News:   NewNewsService(repo.News),
 		Games:  NewGameService(repo.Games),
 		Heroes: NewHeroService(repo.Heroes),
+		Films:  NewFilmService(repo.Films),
 	}
 }

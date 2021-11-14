@@ -57,6 +57,19 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			}
 		}
 
+		film := main.Group("/film")
+		{
+			film.GET("/", h.GetAllFilms)
+			film.GET("/:id", h.GetFilmById)
+
+			api := film.Group("/api")
+			{
+				api.POST("/CreateFilm", h.CreateFilm)
+				api.PUT("/UpdateFilm/:id", h.UpdateFilm)
+				api.DELETE("/DeleteFilm/:id", h.DeleteFilm)
+			}
+		}
+
 	}
 
 	return router
