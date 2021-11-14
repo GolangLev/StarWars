@@ -8,6 +8,14 @@ import (
 	"strconv"
 )
 
+// @Summary GetAllNews
+// @Tags News
+// @Description all info
+// @Accept json
+// @Produce json
+// @Param input body entities.News true "News"
+// @Router / [get]
+
 func (h *Handler) GetAllNews(c *gin.Context) {
 	news, err := h.service.News.GetAllNews()
 	if err != nil {

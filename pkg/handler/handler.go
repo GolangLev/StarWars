@@ -1,8 +1,11 @@
 package handler
 
 import (
+	_ "github.com/GolangLev/Goland/StarWars/docs"
 	"github.com/GolangLev/Goland/StarWars/pkg/service"
 	"github.com/gin-gonic/gin"
+	"github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
 )
 
 type Handler struct {
@@ -18,6 +21,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 	//router.LoadHTMLGlob("web/html/*.html")
 	//router.Static("/assets/", "web/")
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	main := router.Group("/")
 	{

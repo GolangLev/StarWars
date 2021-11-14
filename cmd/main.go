@@ -15,6 +15,13 @@ import (
 	"syscall"
 )
 
+// @title Star Wars
+// @version 1.0
+// @description API Server for Star Wars Application
+
+// @host localhost:8000
+// @BasePath /
+
 func main() {
 
 	if err := InitConfig(); err != nil {
