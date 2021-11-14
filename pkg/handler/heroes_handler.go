@@ -8,6 +8,14 @@ import (
 	"strconv"
 )
 
+// @Summary GetAllHeroes
+// @Tags Hero
+// @Description all info heroes
+// @Accept json
+// @Produce json
+// @Param input body entities.HeroJoin true "HeroJoin"
+// @Router /hero/ [get]
+
 func (h *Handler) GetAllHeroes(c *gin.Context) {
 	hero, err := h.service.Heroes.GetAllHeroes()
 	if err != nil {
@@ -19,6 +27,14 @@ func (h *Handler) GetAllHeroes(c *gin.Context) {
 		"Hero": hero,
 	})
 }
+
+// @Summary GetHeroById
+// @Tags Hero
+// @Description all info by id
+// @Accept json
+// @Produce json
+// @Param input body entities.HeroJoin true "HeroJoin"
+// @Router /hero/:id [get]
 
 func (h *Handler) GetHeroById(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -38,6 +54,14 @@ func (h *Handler) GetHeroById(c *gin.Context) {
 	})
 }
 
+// @Summary CreateHero
+// @Tags Hero
+// @Description add new hero
+// @Accept json
+// @Produce json
+// @Param input body entities.Hero true "Hero"
+// @Router /hero/api/CreateHero [post]
+
 func (h *Handler) CreateHero(c *gin.Context) {
 	var hero entities.Hero
 
@@ -56,6 +80,14 @@ func (h *Handler) CreateHero(c *gin.Context) {
 		"id": id,
 	})
 }
+
+// @Summary UpdateHero
+// @Tags Hero
+// @Description update info hero
+// @Accept json
+// @Produce json
+// @Param input body entities.UpdateHero true "UpdateHero"
+// @Router /hero/api/UpdateHero/:id [put]
 
 func (h *Handler) UpdateHero(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -79,6 +111,14 @@ func (h *Handler) UpdateHero(c *gin.Context) {
 		"Hero": "Record Update",
 	})
 }
+
+// @Summary DeleteHeroDeleteHero
+// @Tags Hero
+// @Description delete hero
+// @Accept json
+// @Produce json
+// @Param input body entities.Hero true "Hero"
+// @Router /hero/api/DeleteHero/:id [delete]
 
 func (h *Handler) DeleteHero(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))

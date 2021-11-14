@@ -8,6 +8,14 @@ import (
 	"strconv"
 )
 
+// @Summary GetAllFilms
+// @Tags Film
+// @Description all info films
+// @Accept json
+// @Produce json
+// @Param input body entities.Film true "Film"
+// @Router /film/ [get]
+
 func (h *Handler) GetAllFilms(c *gin.Context) {
 	film, err := h.service.Films.GetAllFilms()
 	if err != nil {
@@ -19,6 +27,14 @@ func (h *Handler) GetAllFilms(c *gin.Context) {
 		"Film": film,
 	})
 }
+
+// @Summary GetAllFilms
+// @Tags Film
+// @Description all info films by id
+// @Accept json
+// @Produce json
+// @Param input body entities.Film true "Film"
+// @Router /film/:id [get]
 
 func (h *Handler) GetFilmById(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -38,6 +54,14 @@ func (h *Handler) GetFilmById(c *gin.Context) {
 	})
 }
 
+// @Summary CreateFilm
+// @Tags Film
+// @Description add new film
+// @Accept json
+// @Produce json
+// @Param input body entities.Film true "Film"
+// @Router /film/api/CreateFilm [post]
+
 func (h *Handler) CreateFilm(c *gin.Context) {
 	var film entities.Film
 
@@ -56,6 +80,14 @@ func (h *Handler) CreateFilm(c *gin.Context) {
 		"id": id,
 	})
 }
+
+// @Summary UpdateFilm
+// @Tags Film
+// @Description update film
+// @Accept json
+// @Produce json
+// @Param input body entities.UpdateFilm true "UpdateFilm"
+// @Router /film/api/UpdateFilm/:id [put]
 
 func (h *Handler) UpdateFilm(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -79,6 +111,14 @@ func (h *Handler) UpdateFilm(c *gin.Context) {
 		"Film": "Record Update",
 	})
 }
+
+// @Summary DeleteFilm
+// @Tags Film
+// @Description delete film
+// @Accept json
+// @Produce json
+// @Param input body entities.Film true "Film"
+// @Router /film/api/DeleteFilm/:id [delete]
 
 func (h *Handler) DeleteFilm(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))

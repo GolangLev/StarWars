@@ -8,6 +8,13 @@ import (
 	"strconv"
 )
 
+// @Summary GetAllGames
+// @Tags Game
+// @Description all info game
+// @Accept json
+// @Produce json
+// @Param input body entities.Game true "Game"
+// @Router /game/  [get]
 func (h *Handler) GetAllGames(c *gin.Context) {
 	game, err := h.service.Games.GetAllGames()
 	if err != nil {
@@ -20,6 +27,13 @@ func (h *Handler) GetAllGames(c *gin.Context) {
 	})
 }
 
+// @Summary GetGameById
+// @Tags Game
+// @Description all info by id
+// @Accept json
+// @Produce json
+// @Param input body entities.Game true "Game"
+// @Router /game/:id [get]
 func (h *Handler) GetGameById(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -38,6 +52,13 @@ func (h *Handler) GetGameById(c *gin.Context) {
 	})
 }
 
+// @Summary CreateGame
+// @Tags Game
+// @Description add new game
+// @Accept json
+// @Produce json
+// @Param input body entities.Game true "Game"
+// @Router /game/api/CreateGame  [post]
 func (h *Handler) CreateGame(c *gin.Context) {
 	var game entities.Game
 
@@ -57,6 +78,13 @@ func (h *Handler) CreateGame(c *gin.Context) {
 	})
 }
 
+// @Summary UpdateGame
+// @Tags Game
+// @Description update game
+// @Accept json
+// @Produce json
+// @Param input body entities.UpdateGames true "UpdateGames"
+// @Router /game/api/UpdateGame/:id  [put]
 func (h *Handler) UpdateGame(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -80,6 +108,13 @@ func (h *Handler) UpdateGame(c *gin.Context) {
 	})
 }
 
+// @Summary DeleteGame
+// @Tags Game
+// @Description delete game
+// @Accept json
+// @Produce json
+// @Param input body entities.Game true "Game"
+// @Router /game/api/DeleteGame/:id  [delete]
 func (h *Handler) DeleteGame(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {

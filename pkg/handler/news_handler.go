@@ -28,6 +28,14 @@ func (h *Handler) GetAllNews(c *gin.Context) {
 	})
 }
 
+// @Summary GetNewsById
+// @Tags News
+// @Description all info by id
+// @Accept json
+// @Produce json
+// @Param input body entities.News true "News"
+// @Router /news/:id [get]
+
 func (h *Handler) GetNewsById(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -45,6 +53,14 @@ func (h *Handler) GetNewsById(c *gin.Context) {
 		"Data": news,
 	})
 }
+
+// @Summary CreateNews
+// @Tags News
+// @Description all info by id
+// @Accept json
+// @Produce json
+// @Param input body entities.News true "News"
+// @Router /api/CreateNews  [post]
 
 func (h *Handler) CreateNews(c *gin.Context) {
 	var news entities.News
@@ -64,6 +80,14 @@ func (h *Handler) CreateNews(c *gin.Context) {
 		"id": id,
 	})
 }
+
+// @Summary UpdateNews
+// @Tags News
+// @Description update news
+// @Accept json
+// @Produce json
+// @Param input body entities.News true "News"
+// @Router /UpdateNews/:id [put]
 
 func (h *Handler) UpdateNews(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -87,6 +111,14 @@ func (h *Handler) UpdateNews(c *gin.Context) {
 		"Data": "Record Update",
 	})
 }
+
+// @Summary DeleteNews
+// @Tags News
+// @Description delete news
+// @Accept json
+// @Produce json
+// @Param input body entities.UpdateNews true "UpdateNews"
+// @Router /DeleteNews/:id [delete]
 
 func (h *Handler) DeleteNews(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))

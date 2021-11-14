@@ -8,6 +8,14 @@ import (
 	"strconv"
 )
 
+// @Summary GetAllFraction
+// @Tags Fraction
+// @Description all info fraction
+// @Accept json
+// @Produce json
+// @Param input body entities.Fraction true "Fraction"
+// @Router /fraction/ [get]
+
 func (h *Handler) GetAllFraction(c *gin.Context) {
 	fraction, err := h.service.Fractions.GetAllFraction()
 	if err != nil {
@@ -19,6 +27,14 @@ func (h *Handler) GetAllFraction(c *gin.Context) {
 		"Fraction": fraction,
 	})
 }
+
+// @Summary GetFractionById
+// @Tags Fraction
+// @Description all info fraction by id
+// @Accept json
+// @Produce json
+// @Param input body entities.Fraction true "Fraction"
+// @Router /fraction/:id [get]
 
 func (h *Handler) GetFractionById(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -38,6 +54,14 @@ func (h *Handler) GetFractionById(c *gin.Context) {
 	})
 }
 
+// @Summary CreateFraction
+// @Tags Fraction
+// @Description add new fraction
+// @Accept json
+// @Produce json
+// @Param input body entities.Fraction true "Fraction"
+// @Router /fraction/api/CreateFraction [post]
+
 func (h *Handler) CreateFraction(c *gin.Context) {
 	var fraction entities.Fraction
 
@@ -56,6 +80,14 @@ func (h *Handler) CreateFraction(c *gin.Context) {
 		"id": id,
 	})
 }
+
+// @Summary UpdateFraction
+// @Tags Fraction
+// @Description update fraction
+// @Accept json
+// @Produce json
+// @Param input body entities.UpdateFraction true "UpdateFraction"
+// @Router /fraction/api/UpdateFraction/:id [put]
 
 func (h *Handler) UpdateFraction(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -80,6 +112,14 @@ func (h *Handler) UpdateFraction(c *gin.Context) {
 	})
 }
 
+// @Summary DeleteFraction
+// @Tags Fraction
+// @Description delete fraction
+// @Accept json
+// @Produce json
+// @Param input body entities.Fraction true "Fraction"
+// @Router /fraction/api/DeleteFraction/:id [delete]
+
 func (h *Handler) DeleteFraction(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -94,6 +134,6 @@ func (h *Handler) DeleteFraction(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"fraction": "Delete",
+		"Fraction": "Delete",
 	})
 }

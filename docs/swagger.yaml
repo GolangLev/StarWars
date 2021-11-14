@@ -1,9 +1,542 @@
 basePath: /
+definitions:
+  entities.Film:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      sub_title:
+        type: string
+      title:
+        type: string
+      years:
+        type: string
+    type: object
+  entities.Fraction:
+    properties:
+      id:
+        type: integer
+      name_fraction:
+        type: string
+    type: object
+  entities.Game:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      sub_title:
+        type: string
+      title:
+        type: string
+    type: object
+  entities.Hero:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      id_fraction:
+        type: integer
+      name:
+        type: string
+    type: object
+  entities.HeroJoin:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      name_fraction:
+        type: string
+    type: object
+  entities.News:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      sub_title:
+        type: string
+      title:
+        type: string
+    type: object
+  entities.UpdateFilm:
+    properties:
+      description:
+        type: string
+      sub_title:
+        type: string
+      title:
+        type: string
+      years:
+        type: string
+    type: object
+  entities.UpdateFraction:
+    properties:
+      name_fraction:
+        type: string
+    type: object
+  entities.UpdateGames:
+    properties:
+      description:
+        type: string
+      sub_title:
+        type: string
+      title:
+        type: string
+    type: object
+  entities.UpdateHero:
+    properties:
+      description:
+        type: string
+      id_fraction:
+        type: integer
+      name:
+        type: string
+    type: object
+  entities.UpdateNews:
+    properties:
+      description:
+        type: string
+      sub_title:
+        type: string
+      title:
+        type: string
+    type: object
 host: localhost:8000
 info:
   contact: {}
   description: API Server for Star Wars Application
   title: Star Wars
   version: "1.0"
-paths: {}
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: all info
+      parameters:
+      - description: News
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.News'
+      produces:
+      - application/json
+      summary: GetAllNews
+      tags:
+      - News
+  /DeleteNews/:id:
+    delete:
+      consumes:
+      - application/json
+      description: delete news
+      parameters:
+      - description: UpdateNews
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.UpdateNews'
+      produces:
+      - application/json
+      summary: DeleteNews
+      tags:
+      - News
+  /UpdateNews/:id:
+    put:
+      consumes:
+      - application/json
+      description: update news
+      parameters:
+      - description: News
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.News'
+      produces:
+      - application/json
+      summary: UpdateNews
+      tags:
+      - News
+  /api/CreateNews:
+    post:
+      consumes:
+      - application/json
+      description: all info by id
+      parameters:
+      - description: News
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.News'
+      produces:
+      - application/json
+      summary: CreateNews
+      tags:
+      - News
+  /film/:
+    get:
+      consumes:
+      - application/json
+      description: all info films
+      parameters:
+      - description: Film
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Film'
+      produces:
+      - application/json
+      summary: GetAllFilms
+      tags:
+      - Film
+  /film/:id:
+    get:
+      consumes:
+      - application/json
+      description: all info films by id
+      parameters:
+      - description: Film
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Film'
+      produces:
+      - application/json
+      summary: GetAllFilms
+      tags:
+      - Film
+  /film/api/CreateFilm:
+    post:
+      consumes:
+      - application/json
+      description: add new film
+      parameters:
+      - description: Film
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Film'
+      produces:
+      - application/json
+      summary: CreateFilm
+      tags:
+      - Film
+  /film/api/DeleteFilm/:id:
+    delete:
+      consumes:
+      - application/json
+      description: delete film
+      parameters:
+      - description: Film
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Film'
+      produces:
+      - application/json
+      summary: DeleteFilm
+      tags:
+      - Film
+  /film/api/UpdateFilm/:id:
+    put:
+      consumes:
+      - application/json
+      description: update film
+      parameters:
+      - description: UpdateFilm
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.UpdateFilm'
+      produces:
+      - application/json
+      summary: UpdateFilm
+      tags:
+      - Film
+  /fraction/:
+    get:
+      consumes:
+      - application/json
+      description: all info fraction
+      parameters:
+      - description: Fraction
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Fraction'
+      produces:
+      - application/json
+      summary: GetAllFraction
+      tags:
+      - Fraction
+  /fraction/:id:
+    get:
+      consumes:
+      - application/json
+      description: all info fraction by id
+      parameters:
+      - description: Fraction
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Fraction'
+      produces:
+      - application/json
+      summary: GetFractionById
+      tags:
+      - Fraction
+  /fraction/api/CreateFraction:
+    post:
+      consumes:
+      - application/json
+      description: add new fraction
+      parameters:
+      - description: Fraction
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Fraction'
+      produces:
+      - application/json
+      summary: CreateFraction
+      tags:
+      - Fraction
+  /fraction/api/DeleteFraction/:id:
+    delete:
+      consumes:
+      - application/json
+      description: delete fraction
+      parameters:
+      - description: Fraction
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Fraction'
+      produces:
+      - application/json
+      summary: DeleteFraction
+      tags:
+      - Fraction
+  /fraction/api/UpdateFraction/:id:
+    put:
+      consumes:
+      - application/json
+      description: update fraction
+      parameters:
+      - description: UpdateFraction
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.UpdateFraction'
+      produces:
+      - application/json
+      summary: UpdateFraction
+      tags:
+      - Fraction
+  /game/:
+    get:
+      consumes:
+      - application/json
+      description: all info game
+      parameters:
+      - description: Game
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Game'
+      produces:
+      - application/json
+      summary: GetAllGames
+      tags:
+      - Game
+  /game/:id:
+    get:
+      consumes:
+      - application/json
+      description: all info by id
+      parameters:
+      - description: Game
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Game'
+      produces:
+      - application/json
+      summary: GetGameById
+      tags:
+      - Game
+  /game/api/CreateGame:
+    post:
+      consumes:
+      - application/json
+      description: add new game
+      parameters:
+      - description: Game
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Game'
+      produces:
+      - application/json
+      summary: CreateGame
+      tags:
+      - Game
+  /game/api/DeleteGame/:id:
+    delete:
+      consumes:
+      - application/json
+      description: delete game
+      parameters:
+      - description: Game
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Game'
+      produces:
+      - application/json
+      summary: DeleteGame
+      tags:
+      - Game
+  /game/api/UpdateGame/:id:
+    put:
+      consumes:
+      - application/json
+      description: update game
+      parameters:
+      - description: UpdateGames
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.UpdateGames'
+      produces:
+      - application/json
+      summary: UpdateGame
+      tags:
+      - Game
+  /hero/:
+    get:
+      consumes:
+      - application/json
+      description: all info heroes
+      parameters:
+      - description: HeroJoin
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.HeroJoin'
+      produces:
+      - application/json
+      summary: GetAllHeroes
+      tags:
+      - Hero
+  /hero/:id:
+    get:
+      consumes:
+      - application/json
+      description: all info by id
+      parameters:
+      - description: HeroJoin
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.HeroJoin'
+      produces:
+      - application/json
+      summary: GetHeroById
+      tags:
+      - Hero
+  /hero/api/CreateHero:
+    post:
+      consumes:
+      - application/json
+      description: add new hero
+      parameters:
+      - description: Hero
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Hero'
+      produces:
+      - application/json
+      summary: CreateHero
+      tags:
+      - Hero
+  /hero/api/DeleteHero/:id:
+    delete:
+      consumes:
+      - application/json
+      description: delete hero
+      parameters:
+      - description: Hero
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Hero'
+      produces:
+      - application/json
+      summary: DeleteHeroDeleteHero
+      tags:
+      - Hero
+  /hero/api/UpdateHero/:id:
+    put:
+      consumes:
+      - application/json
+      description: update info hero
+      parameters:
+      - description: UpdateHero
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.UpdateHero'
+      produces:
+      - application/json
+      summary: UpdateHero
+      tags:
+      - Hero
+  /news/:id:
+    get:
+      consumes:
+      - application/json
+      description: all info by id
+      parameters:
+      - description: News
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/entities.News'
+      produces:
+      - application/json
+      summary: GetNewsById
+      tags:
+      - News
 swagger: "2.0"

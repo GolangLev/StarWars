@@ -8,5 +8,824 @@
     },
     "host": "localhost:8000",
     "basePath": "/",
-    "paths": {}
+    "paths": {
+        "/": {
+            "get": {
+                "description": "all info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "News"
+                ],
+                "summary": "GetAllNews",
+                "parameters": [
+                    {
+                        "description": "News",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.News"
+                        }
+                    }
+                ]
+            }
+        },
+        "/DeleteNews/:id": {
+            "delete": {
+                "description": "delete news",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "News"
+                ],
+                "summary": "DeleteNews",
+                "parameters": [
+                    {
+                        "description": "UpdateNews",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.UpdateNews"
+                        }
+                    }
+                ]
+            }
+        },
+        "/UpdateNews/:id": {
+            "put": {
+                "description": "update news",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "News"
+                ],
+                "summary": "UpdateNews",
+                "parameters": [
+                    {
+                        "description": "News",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.News"
+                        }
+                    }
+                ]
+            }
+        },
+        "/api/CreateNews": {
+            "post": {
+                "description": "all info by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "News"
+                ],
+                "summary": "CreateNews",
+                "parameters": [
+                    {
+                        "description": "News",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.News"
+                        }
+                    }
+                ]
+            }
+        },
+        "/film/": {
+            "get": {
+                "description": "all info films",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Film"
+                ],
+                "summary": "GetAllFilms",
+                "parameters": [
+                    {
+                        "description": "Film",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Film"
+                        }
+                    }
+                ]
+            }
+        },
+        "/film/:id": {
+            "get": {
+                "description": "all info films by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Film"
+                ],
+                "summary": "GetAllFilms",
+                "parameters": [
+                    {
+                        "description": "Film",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Film"
+                        }
+                    }
+                ]
+            }
+        },
+        "/film/api/CreateFilm": {
+            "post": {
+                "description": "add new film",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Film"
+                ],
+                "summary": "CreateFilm",
+                "parameters": [
+                    {
+                        "description": "Film",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Film"
+                        }
+                    }
+                ]
+            }
+        },
+        "/film/api/DeleteFilm/:id": {
+            "delete": {
+                "description": "delete film",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Film"
+                ],
+                "summary": "DeleteFilm",
+                "parameters": [
+                    {
+                        "description": "Film",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Film"
+                        }
+                    }
+                ]
+            }
+        },
+        "/film/api/UpdateFilm/:id": {
+            "put": {
+                "description": "update film",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Film"
+                ],
+                "summary": "UpdateFilm",
+                "parameters": [
+                    {
+                        "description": "UpdateFilm",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.UpdateFilm"
+                        }
+                    }
+                ]
+            }
+        },
+        "/fraction/": {
+            "get": {
+                "description": "all info fraction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Fraction"
+                ],
+                "summary": "GetAllFraction",
+                "parameters": [
+                    {
+                        "description": "Fraction",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Fraction"
+                        }
+                    }
+                ]
+            }
+        },
+        "/fraction/:id": {
+            "get": {
+                "description": "all info fraction by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Fraction"
+                ],
+                "summary": "GetFractionById",
+                "parameters": [
+                    {
+                        "description": "Fraction",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Fraction"
+                        }
+                    }
+                ]
+            }
+        },
+        "/fraction/api/CreateFraction": {
+            "post": {
+                "description": "add new fraction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Fraction"
+                ],
+                "summary": "CreateFraction",
+                "parameters": [
+                    {
+                        "description": "Fraction",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Fraction"
+                        }
+                    }
+                ]
+            }
+        },
+        "/fraction/api/DeleteFraction/:id": {
+            "delete": {
+                "description": "delete fraction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Fraction"
+                ],
+                "summary": "DeleteFraction",
+                "parameters": [
+                    {
+                        "description": "Fraction",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Fraction"
+                        }
+                    }
+                ]
+            }
+        },
+        "/fraction/api/UpdateFraction/:id": {
+            "put": {
+                "description": "update fraction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Fraction"
+                ],
+                "summary": "UpdateFraction",
+                "parameters": [
+                    {
+                        "description": "UpdateFraction",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.UpdateFraction"
+                        }
+                    }
+                ]
+            }
+        },
+        "/game/": {
+            "get": {
+                "description": "all info game",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Game"
+                ],
+                "summary": "GetAllGames",
+                "parameters": [
+                    {
+                        "description": "Game",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Game"
+                        }
+                    }
+                ]
+            }
+        },
+        "/game/:id": {
+            "get": {
+                "description": "all info by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Game"
+                ],
+                "summary": "GetGameById",
+                "parameters": [
+                    {
+                        "description": "Game",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Game"
+                        }
+                    }
+                ]
+            }
+        },
+        "/game/api/CreateGame": {
+            "post": {
+                "description": "add new game",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Game"
+                ],
+                "summary": "CreateGame",
+                "parameters": [
+                    {
+                        "description": "Game",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Game"
+                        }
+                    }
+                ]
+            }
+        },
+        "/game/api/DeleteGame/:id": {
+            "delete": {
+                "description": "delete game",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Game"
+                ],
+                "summary": "DeleteGame",
+                "parameters": [
+                    {
+                        "description": "Game",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Game"
+                        }
+                    }
+                ]
+            }
+        },
+        "/game/api/UpdateGame/:id": {
+            "put": {
+                "description": "update game",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Game"
+                ],
+                "summary": "UpdateGame",
+                "parameters": [
+                    {
+                        "description": "UpdateGames",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.UpdateGames"
+                        }
+                    }
+                ]
+            }
+        },
+        "/hero/": {
+            "get": {
+                "description": "all info heroes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hero"
+                ],
+                "summary": "GetAllHeroes",
+                "parameters": [
+                    {
+                        "description": "HeroJoin",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.HeroJoin"
+                        }
+                    }
+                ]
+            }
+        },
+        "/hero/:id": {
+            "get": {
+                "description": "all info by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hero"
+                ],
+                "summary": "GetHeroById",
+                "parameters": [
+                    {
+                        "description": "HeroJoin",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.HeroJoin"
+                        }
+                    }
+                ]
+            }
+        },
+        "/hero/api/CreateHero": {
+            "post": {
+                "description": "add new hero",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hero"
+                ],
+                "summary": "CreateHero",
+                "parameters": [
+                    {
+                        "description": "Hero",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Hero"
+                        }
+                    }
+                ]
+            }
+        },
+        "/hero/api/DeleteHero/:id": {
+            "delete": {
+                "description": "delete hero",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hero"
+                ],
+                "summary": "DeleteHeroDeleteHero",
+                "parameters": [
+                    {
+                        "description": "Hero",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.Hero"
+                        }
+                    }
+                ]
+            }
+        },
+        "/hero/api/UpdateHero/:id": {
+            "put": {
+                "description": "update info hero",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hero"
+                ],
+                "summary": "UpdateHero",
+                "parameters": [
+                    {
+                        "description": "UpdateHero",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.UpdateHero"
+                        }
+                    }
+                ]
+            }
+        },
+        "/news/:id": {
+            "get": {
+                "description": "all info by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "News"
+                ],
+                "summary": "GetNewsById",
+                "parameters": [
+                    {
+                        "description": "News",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entities.News"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "entities.Film": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "sub_title": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "years": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.Fraction": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name_fraction": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.Game": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "sub_title": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.Hero": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "id_fraction": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.HeroJoin": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "name_fraction": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.News": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "sub_title": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.UpdateFilm": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "sub_title": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "years": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.UpdateFraction": {
+            "type": "object",
+            "properties": {
+                "name_fraction": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.UpdateGames": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "sub_title": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.UpdateHero": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id_fraction": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "entities.UpdateNews": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "sub_title": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }
