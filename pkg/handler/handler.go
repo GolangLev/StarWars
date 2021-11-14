@@ -70,6 +70,19 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			}
 		}
 
+		fraction := main.Group("/fraction")
+		{
+			fraction.GET("/", h.GetAllFraction)
+			fraction.GET("/:id", h.GetFractionById)
+
+			api := fraction.Group("/api")
+			{
+				api.POST("/CreateFraction", h.CreateFraction)
+				api.PUT("/UpdateFraction/:id", h.UpdateFraction)
+				api.DELETE("/DeleteFraction/:id", h.DeleteFraction)
+			}
+		}
+
 	}
 
 	return router

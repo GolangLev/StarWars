@@ -10,8 +10,8 @@ type Film struct {
 }
 
 type UpdateFilm struct {
-	Title       string `json:"title" db:"title"`
-	SubTitle    string `json:"sub_title" db:"subtitle"`
-	Description string `json:"description" db:"description"`
-	Years       string `json:"years" db:"years"`
+	Title       *string `json:"title" db:"title"`
+	SubTitle    *string `json:"sub_title" db:"subtitle"`
+	Description *string `json:"description" db:"description"`
+	Years       *string `json:"years" db:"years"`
 }

@@ -30,6 +30,11 @@ type Heroes interface {
 }
 
 type Fractions interface {
+	CreateFraction(fraction entities.Fraction) (int, error)
+	GetAllFraction() ([]entities.Fraction, error)
+	GetFractionById(fractionId int) (entities.Fraction, error)
+	DeleteFraction(fractionId int) error
+	UpdateFraction(fractionId int, fraction entities.UpdateFraction) error
 }
 
 type News interface {
@@ -50,9 +55,10 @@ type Repository struct {
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		News:   NewNewsRepository(db),
-		Games:  NewGameRepository(db),
-		Heroes: NewHeroRepository(db),
-		Films:  NewFilmsRepository(db),
+		News:      NewNewsRepository(db),
+		Games:     NewGameRepository(db),
+		Heroes:    NewHeroRepository(db),
+		Films:     NewFilmsRepository(db),
+		Fractions: NewFractionRepository(db),
 	}
 }

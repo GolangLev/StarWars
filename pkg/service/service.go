@@ -30,6 +30,11 @@ type Heroes interface {
 }
 
 type Fractions interface {
+	CreateFraction(fraction entities.Fraction) (int, error)
+	GetAllFraction() ([]entities.Fraction, error)
+	GetFractionById(fractionId int) (entities.Fraction, error)
+	DeleteFraction(fractionId int) error
+	UpdateFraction(fractionId int, fraction entities.UpdateFraction) error
 }
 
 type News interface {
@@ -50,9 +55,10 @@ type Service struct {
 
 func NewService(repo *repository.Repository) *Service {
 	return &Service{
-		News:   NewNewsService(repo.News),
-		Games:  NewGameService(repo.Games),
-		Heroes: NewHeroService(repo.Heroes),
-		Films:  NewFilmService(repo.Films),
+		News:      NewNewsService(repo.News),
+		Games:     NewGameService(repo.Games),
+		Heroes:    NewHeroService(repo.Heroes),
+		Films:     NewFilmService(repo.Films),
+		Fractions: NewFractionService(repo.Fractions),
 	}
 }
