@@ -1,8 +1,8 @@
 package handler
 
 import (
-	_ "github.com/GolangLev/Goland/StarWars/docs"
 	"github.com/GolangLev/Goland/StarWars/pkg/service"
+	_ "github.com/GolangLev/Goland/StarWars/swagger"
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
