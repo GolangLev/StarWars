@@ -11,6 +11,8 @@
 
 > JavaScript 
 
+> Swagger
+
 ## Frameworks
 
 - [Gin gonic](https://github.com/gin-gonic/gin)
@@ -19,3 +21,4 @@
 - [Files Env](https://github.com/joho/godotenv)
 - [DB Postgres](https://metanit.com/go/tutorial/10.3.php)
 - [DB Sqlx Extensions](https://github.com/jmoiron/sqlx)
+- [Swagger](https://github.com/swaggo/swag)
