@@ -2,9 +2,11 @@
 
 ## Development
 
-> Library Http
-> Library Equatable
-> Pattern Flutter Bloc
+>Library Http
+
+>Library Equatable
+
+>Pattern Flutter Bloc
 
 ## Frameworks
 
