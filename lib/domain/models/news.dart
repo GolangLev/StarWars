@@ -22,7 +22,7 @@ class News extends Equatable {
   ///Получение данных отправленных API в формате JSON.
   factory News.fromJSON(Map json) {
     return News(
-      id: json['id'],
+      id: json['id'] as int,
       title: json['title'],
       subTitle: json['sub_title'],
       description: json['description'],
@@ -43,11 +43,32 @@ class News extends Equatable {
   ///[News.createEmpty()] фабричный конструктор.
   ///Имитирует пустую модель [News]
   factory News.createEmpty() {
-    return  const News(
+    return const News(
       id: 0,
       title: "",
       subTitle: "",
       description: "",
     );
   }
+}
+
+class ResponseNews extends Equatable {
+  final News news;
+
+  const ResponseNews({required this.news});
+
+  ResponseNews.fromJson(dynamic json) : news = News.fromJSON(json['Data']);
+
+  @override
+  List<Object?> get props => [news];
+}
+
+class ResponseNewsAll extends Equatable {
+  final List<News> news;
+
+  ResponseNewsAll.fromJson(dynamic json)
+      : news = (json['Data'] as List).map((e) => News.fromJSON(e)).toList();
+
+  @override
+  List<Object?> get props => [news];
 }
