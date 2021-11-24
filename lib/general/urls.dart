@@ -1,7 +1,7 @@
 class Urls{
   Urls._();
 
-static const news = 'http://localhost:8000/';
+static const news = 'http://127.0.0.1:8000/';
 static const newsId = 'http://127.0.0.1:8000/news/';
 static const createNews = 'http://127.0.0.1:8000/api/CreateNews';
 static const updateNews = 'http://127.0.0.1:8000/api/UpdateNews/';
