@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: getTheme(),
+      title: "StarWars",
       home: const HomePage(),
     );
   }
