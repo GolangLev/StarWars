@@ -30,7 +30,7 @@ func (r *FractionRepository) CreateFraction(fraction entities.Fraction) (int, er
 func (r *FractionRepository) GetAllFraction() ([]entities.Fraction, error) {
 	var fraction []entities.Fraction
 
-	query := fmt.Sprintf("SELECT * FROM %s", database.TableFractions)
+	query := fmt.Sprintf("SELECT * FROM %s ORDER BY id ASC", database.TableFractions)
 	err := r.db.Select(&fraction, query)
 
 	return fraction, err

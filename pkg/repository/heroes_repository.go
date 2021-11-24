@@ -30,7 +30,7 @@ func (h *HeroRepository) CreateHero(hero entities.Hero) (int, error) {
 func (h *HeroRepository) GetAllHeroes() ([]entities.HeroJoin, error) {
 	var hero []entities.HeroJoin
 
-	query := fmt.Sprintf("SELECT h.id, h.name, h.description, f.name_fraction FROM %s h LEFT JOIN %s f on h.id_fraction = f.id", database.TableHeroes, database.TableFractions)
+	query := fmt.Sprintf("SELECT h.id, h.name, h.description, f.name_fraction FROM %s h LEFT JOIN %s f on h.id_fraction = f.id ORDER BY id ASC", database.TableHeroes, database.TableFractions)
 	err := h.db.Select(&hero, query)
 
 	return hero, err

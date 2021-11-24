@@ -30,7 +30,7 @@ func (n *NewsRepository) CreateNews(news entities.News) (int, error) {
 func (n *NewsRepository) GetAllNews() ([]entities.News, error) {
 	var news []entities.News
 
-	query := fmt.Sprintf("SELECT * FROM %s", database.TableNews)
+	query := fmt.Sprintf("SELECT * FROM %s ORDER BY id ASC", database.TableNews)
 	err := n.db.Select(&news, query)
 
 	return news, err

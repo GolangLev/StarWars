@@ -30,7 +30,7 @@ func (g *GameRepository) CreateGames(games entities.Game) (int, error) {
 func (g *GameRepository) GetAllGames() ([]entities.Game, error) {
 	var game []entities.Game
 
-	query := fmt.Sprintf("SELECT * FROM %s", database.TableGames)
+	query := fmt.Sprintf("SELECT * FROM %s ORDER BY id ASC", database.TableGames)
 	err := g.db.Select(&game, query)
 
 	return game, err
