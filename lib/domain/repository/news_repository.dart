@@ -3,24 +3,32 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:star_wars_front/domain/models/news.dart';
-import 'package:star_wars_front/domain/network/network_news.dart';
 import 'package:star_wars_front/domain/repository/interfaces/i_news_repository.dart';
 import 'package:star_wars_front/general/urls.dart';
 
 ///[NewsRepository] class имплементирующий abstract class(interface) [IRepoNews]
 class NewsRepository implements IRepoNews {
-  NewsRepository({required this.networkServiceNews});
 
   ///[logger] вывод логов в консоль для отладки
   final logger = Logger();
-  final NetworkServiceNews networkServiceNews;
 
   ///[getAllNews] получить список всех новостей
-  Future<List<News>> getAllNews() async {
-     final news = await networkServiceNews.getAllNews();
-     return news!.map((e) => News.fromJSON(e)).toList();
-  }
+  @override
+  Future getAllNews() async {
+    final url = Urls.news;
 
+    try {
+      final response = await Dio().get(url);
+      if (response.statusCode == 200) {
+        logger.i("Repository GetAllNews Response: $response");
+        return ResponseNewsAll.fromJson(response.data);
+      } else {
+        logger.e("Repository GetAllNews, StatusCode != 200");
+      }
+    } catch (error) {
+      logger.e("Repository GetAllNews: $error");
+    }
+  }
 
   ///[getNewsById] получить новость по id
   @override
