@@ -41,3 +41,13 @@ class Fraction extends Equatable {
     );
   }
 }
+
+class ResponseFractionAll extends Equatable {
+  final List<Fraction> fraction;
+
+  ResponseFractionAll.fromJson(dynamic json)
+      : fraction = (json['Fraction'] as List).map((e) => Fraction.fromJSON(e)).toList();
+
+  @override
+  List<Object?> get props => [fraction];
+}

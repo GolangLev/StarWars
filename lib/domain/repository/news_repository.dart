@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:star_wars_front/domain/models/news.dart';
@@ -39,16 +37,14 @@ class NewsRepository implements IRepoNews {
       final response = await Dio().get(url);
 
       if (response.statusCode == 200) {
-        logger.i("Info response news: $response");
+        logger.i("Repository GetNewsById Response: $response");
 
-        final jsonDecode = json.decode(response.data);
-
-        return News.fromJSON(jsonDecode);
+        return News.fromJSON(response.data);
       } else {
         logger.e("Status code != 200: $response");
       }
     } catch (error) {
-      logger.e("Error, GET_ALL_NEWS: $error");
+      logger.e("Error, GetNewsById: $error");
     }
   }
 }

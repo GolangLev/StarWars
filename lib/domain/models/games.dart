@@ -51,3 +51,13 @@ class Game extends Equatable {
     );
   }
 }
+
+class ResponseGameAll extends Equatable {
+  final List<Game> game;
+
+  ResponseGameAll.fromJson(dynamic json)
+      : game = (json['Game'] as List).map((e) => Game.fromJSON(e)).toList();
+
+  @override
+  List<Object?> get props => [game];
+}

@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:star_wars_front/domain/models/heroes.dart';
-import 'package:star_wars_front/domain/models/news.dart';
 import 'package:star_wars_front/domain/repository/interfaces/i_hero_repository.dart';
-import 'package:star_wars_front/domain/repository/interfaces/i_news_repository.dart';
 import 'package:star_wars_front/general/urls.dart';
 
 ///[HeroRepository] class имплементирующий abstract class(interface) [IRepoHero]
@@ -21,17 +17,32 @@ class HeroRepository implements IRepoHero {
     try {
       final response = await Dio().get(url);
       if (response.statusCode == 200) {
-        logger.i("Repository getAllHeroes Response: $response");
+        logger.i("Repository GetAllHeroes Response: $response");
         return ResponseHeroAll.fromJson(response.data);
       } else {
-        logger.e("Repository getAllHeroes, StatusCode != 200");
+        logger.e("Repository GetAllHeroes, StatusCode != 200");
       }
     } catch (error) {
-      logger.e("Repository getAllHeroes: $error");
+      logger.e("Repository GetAllHeroes: $error");
     }
   }
 
   @override
   Future getHeroById(int id) async {
+    final url = Urls.heroId + '$id';
+
+    try {
+      final response = await Dio().get(url);
+
+      if (response.statusCode == 200) {
+        logger.i("Repository GetHeroById Response: $response");
+
+        return Heroes.fromJSON(response.data);
+      } else {
+        logger.e("Status code != 200: $response");
+      }
+    } catch (error) {
+      logger.e("Error, GetHeroById: $error");
+    }
   }
 }

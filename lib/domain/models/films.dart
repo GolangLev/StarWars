@@ -31,28 +31,14 @@ class Film extends Equatable {
       years: json['years'],
     );
   }
+}
 
-  ///[Film.copyWith(film)] фабричный конструктор.
-  ///Для получение текущих данных в модели.
-  factory Film.copyWith(Film film) {
-    return Film(
-      id: film.id,
-      title: film.title,
-      subTitle: film.subTitle,
-      description: film.description,
-      years: film.years,
-    );
-  }
+class ResponseFilmsAll extends Equatable {
+  final List<Film> film;
 
-  ///[Film.createEmpty()] фабричный конструктор.
-  ///Имитирует пустую модель [Film]
-  factory Film.createEmpty() {
-    return const Film(
-      id: 0,
-      title: "",
-      subTitle: "",
-      description: "",
-      years: "",
-    );
-  }
+  ResponseFilmsAll.fromJson(dynamic json)
+      : film = (json['Film'] as List).map((e) => Film.fromJSON(e)).toList();
+
+  @override
+  List<Object?> get props => [film];
 }
