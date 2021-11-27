@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 ///[Hero] модель имитирующая структуру HeroJoin, а также таблицу в базе данных Heroes
 class Heroes extends Equatable {
-  const Heroes({
+  const Heroes._({
     required this.id,
     required this.name,
     required this.description,
@@ -14,41 +14,41 @@ class Heroes extends Equatable {
   final String description;
   final String nameFraction;
 
+  Heroes copyWith({
+    int? id,
+    String? name,
+    String? description,
+    String? nameFraction,
+  }) {
+    return Heroes._(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        nameFraction: nameFraction ?? this.description);
+  }
+
   @override
   List<Object?> get props => [id, name, description, nameFraction];
 
-  ///[Heroes.fromJSON(json)] фабричный конструктор.
+  ///[Heroes.fromJSON(json)]
   ///Для возвращения данных из модели.
   ///Получение данных отправленных API в формате JSON.
-  factory Heroes.fromJSON(Map json) {
-    return Heroes(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      nameFraction: json['name_fraction'],
-    );
-  }
+  Heroes.fromJSON(dynamic json)
+      : id = json['id'],
+        name = json['name'],
+        description = json['description'],
+        nameFraction = json['name_fraction'];
 
-  ///[Heroes.copyWith(hero)] фабричный конструктор.
-  ///Для получение текущих данных в модели.
-  factory Heroes.copyWith(Heroes hero) {
-    return Heroes(
-      id: hero.id,
-      name: hero.name,
-      description: hero.description,
-      nameFraction: hero.nameFraction
-    );
-  }
+  ///[toJson]
+  ///Для отправки данных в формате JSON (POST, PUT, DELETE)
+  Map<String, dynamic> toJson() {
+    var json = <String, dynamic>{};
 
-  ///[Heroes.createEmpty()] фабричный конструктор.
-  ///Имитирует пустую модель [Heroes]
-  factory Heroes.createEmpty() {
-    return  const Heroes(
-      id: 0,
-      name: "",
-      description: "",
-      nameFraction: "",
-    );
+    json['name'] = name;
+    json['description'] = description;
+    json['name_fraction'] = nameFraction;
+
+    return json;
   }
 }
 

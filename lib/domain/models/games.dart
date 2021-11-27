@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 ///[Game] модель имитирующая структуру Game, а также таблицу в базе данных Games
 class Game extends Equatable {
-  const Game({
+  const Game._({
     required this.id,
     required this.title,
     required this.subTitle,
@@ -14,41 +14,41 @@ class Game extends Equatable {
   final String subTitle;
   final String description;
 
+  Game copyWith({
+    int? id,
+    String? title,
+    String? subTitle,
+    String? description,
+  }) {
+    return Game._(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        subTitle: subTitle ?? this.subTitle,
+        description: description ?? this.description);
+  }
+
   @override
   List<Object?> get props => [id, title, subTitle, description];
 
-  ///[Game.fromJSON(json)] фабричный конструктор.
+  ///[Game.fromJSON(json)]
   ///Для возвращения данных из модели.
   ///Получение данных отправленных API в формате JSON.
-  factory Game.fromJSON(Map json) {
-    return Game(
-      id: json['id'],
-      title: json['title'],
-      subTitle: json['sub_title'],
-      description: json['description'],
-    );
-  }
+  Game.fromJSON(dynamic json)
+      : id = json['id'],
+        title = json['title'],
+        subTitle = json['sub_title'],
+        description = json['description'];
 
-  ///[Game.copyWith(game)] фабричный конструктор.
-  ///Для получение текущих данных в модели.
-  factory Game.copyWith(Game game) {
-    return Game(
-      id: game.id,
-      title: game.title,
-      subTitle: game.subTitle,
-      description: game.description,
-    );
-  }
+  ///[toJSON]
+  ///Для отправки данных в формате JSON (POST, PUT, DELETE)
+  Map<String, dynamic> toJSON() {
+    var json = <String, dynamic>{};
 
-  ///[Game.createEmpty()] фабричный конструктор.
-  ///Имитирует пустую модель [Game]
-  factory Game.createEmpty() {
-    return const Game(
-      id: 0,
-      title: "",
-      subTitle: "",
-      description: "",
-    );
+    json['title'] = title;
+    json['sub_title'] = subTitle;
+    json['description'] = description;
+
+    return json;
   }
 }
 

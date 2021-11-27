@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 ///[Film] модель имитирующая структуру Film, а также таблицу в базе данных Films
 class Film extends Equatable {
-  const Film({
+  const Film._({
     required this.id,
     required this.title,
     required this.subTitle,
@@ -16,20 +16,44 @@ class Film extends Equatable {
   final String description;
   final String years;
 
+  Film copyWith(
+      {int? id,
+      String? title,
+      String? subTitle,
+      String? description,
+      String? years}) {
+    return Film._(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      subTitle: subTitle ?? this.subTitle,
+      description: description ?? this.description,
+      years: years ?? this.years,
+    );
+  }
+
   @override
   List<Object?> get props => [id, title, subTitle, description, years];
 
-  ///[Film.fromJSON(json)] фабричный конструктор.
+  ///[Film.fromJSON(json)]
   ///Для возвращения данных из модели.
   ///Получение данных отправленных API в формате JSON.
-  factory Film.fromJSON(Map json) {
-    return Film(
-      id: json['id'],
-      title: json['title'],
-      subTitle: json['sub_title'],
-      description: json['description'],
-      years: json['years'],
-    );
+  Film.fromJSON(dynamic json)
+      : id = json['id'],
+        title = json['title'],
+        subTitle = json['sub_title'],
+        description = json['description'],
+        years = json['years'];
+
+  ///[toJSON]
+  ///Для отправки данных в формате JSON (POST, PUT, DELETE)
+  Map<String, dynamic> toJSON() {
+    var json = <String, dynamic>{};
+    json['title'] = title;
+    json['sub_title'] = subTitle;
+    json['description'] = description;
+    json['years'] = years;
+
+    return json;
   }
 }
 
