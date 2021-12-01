@@ -19,8 +19,6 @@ func NewHandler(service *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 
 	router := gin.New()
-	//router.LoadHTMLGlob("web/html/*.html")
-	//router.Static("/assets/", "web/")
 
 	router.Use(CORSMiddleware())
 
