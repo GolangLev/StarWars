@@ -18,8 +18,8 @@ func NewFractionRepository(db *sqlx.DB) *FractionRepository {
 func (r *FractionRepository) CreateFraction(fraction entities.Fraction) (int, error) {
 	var id int
 
-	query := fmt.Sprintf("INSERT INTO %s (name_fraction) VALUES ($1) RETURNING id", database.TableFractions)
-	row := r.db.QueryRow(query, fraction.NameFraction)
+	query := fmt.Sprintf("INSERT INTO %s (name_fraction, description) VALUES ($1, $2) RETURNING id", database.TableFractions)
+	row := r.db.QueryRow(query, fraction.NameFraction, fraction.Description)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
 	}
@@ -53,8 +53,8 @@ func (r *FractionRepository) DeleteFraction(fractionId int) error {
 }
 
 func (r *FractionRepository) UpdateFraction(fractionId int, fraction entities.UpdateFraction) error {
-	query := fmt.Sprintf("UPDATE %s SET name_fraction = $1 WHERE id = $2", database.TableFractions)
-	_, err := r.db.Exec(query, fraction.NameFraction, fractionId)
+	query := fmt.Sprintf("UPDATE %s SET name_fraction = $1, description = $2 WHERE id = $3", database.TableFractions)
+	_, err := r.db.Exec(query, fraction.NameFraction, fraction.Description, fractionId)
 
 	return err
 }
