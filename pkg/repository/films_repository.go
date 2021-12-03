@@ -30,7 +30,7 @@ func (f *FilmsRepository) CreateFilm(film entities.Film) (int, error) {
 func (f *FilmsRepository) GetAllFilms() ([]entities.Film, error) {
 	var game []entities.Film
 
-	query := fmt.Sprintf("SELECT * FROM %s ORDER BY id ASC", database.TableFilms)
+	query := fmt.Sprintf("SELECT * FROM %s ORDER BY years DESC", database.TableFilms)
 	err := f.db.Select(&game, query)
 
 	return game, err
