@@ -9,5 +9,5 @@ type Fraction struct {
 
 type UpdateFraction struct {
 	NameFraction *string `json:"name_fraction" db:"name_fraction"`
-	Description  string  `json:"description" db:"description"`
+	Description  *string `json:"description" db:"description"`
 }
