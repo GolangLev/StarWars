@@ -5,6 +5,12 @@ import (
 	"github.com/GolangLev/Goland/StarWars/pkg/repository"
 )
 
+type Authorization interface {
+	CreateUser(user entities.Users) (int, error)
+	SignInUser(login, password string) (string, error)
+	GetUserByLoginAndPassword(login, password string) (int, error)
+}
+
 type Games interface {
 	CreateGames(games entities.Game) (int, error)
 	GetAllGames() ([]entities.Game, error)
@@ -51,14 +57,16 @@ type Service struct {
 	Heroes
 	Fractions
 	News
+	Authorization
 }
 
 func NewService(repo *repository.Repository) *Service {
 	return &Service{
-		News:      NewNewsService(repo.News),
-		Games:     NewGameService(repo.Games),
-		Heroes:    NewHeroService(repo.Heroes),
-		Films:     NewFilmService(repo.Films),
-		Fractions: NewFractionService(repo.Fractions),
+		News:          NewNewsService(repo.News),
+		Games:         NewGameService(repo.Games),
+		Heroes:        NewHeroService(repo.Heroes),
+		Films:         NewFilmService(repo.Films),
+		Fractions:     NewFractionService(repo.Fractions),
+		Authorization: NewAuthService(repo.Authorization),
 	}
 }

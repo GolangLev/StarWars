@@ -5,6 +5,12 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+type Authorization interface {
+	CreateUser(user entities.Users) (int, error)
+	GetUser(login, password string) (entities.Users, error)
+	GetUserByLoginAndPassword(login, password string) (int, error)
+}
+
 type Games interface {
 	CreateGames(games entities.Game) (int, error)
 	GetAllGames() ([]entities.Game, error)
@@ -51,14 +57,16 @@ type Repository struct {
 	Heroes
 	Fractions
 	News
+	Authorization
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		News:      NewNewsRepository(db),
-		Games:     NewGameRepository(db),
-		Heroes:    NewHeroRepository(db),
-		Films:     NewFilmsRepository(db),
-		Fractions: NewFractionRepository(db),
+		News:          NewNewsRepository(db),
+		Games:         NewGameRepository(db),
+		Heroes:        NewHeroRepository(db),
+		Films:         NewFilmsRepository(db),
+		Fractions:     NewFractionRepository(db),
+		Authorization: NewAuthRepository(db),
 	}
 }
