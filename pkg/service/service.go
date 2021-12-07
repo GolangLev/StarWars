@@ -9,6 +9,7 @@ type Authorization interface {
 	CreateUser(user entities.Users) (int, error)
 	SignInUser(login, password string) (string, error)
 	GetUserByLoginAndPassword(login, password string) (int, error)
+	GetUserById(userId int) (entities.Users, error)
 }
 
 type Games interface {

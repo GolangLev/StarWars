@@ -5,6 +5,7 @@ import (
 	"github.com/GolangLev/Goland/StarWars/internal/server"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 func (h *Handler) SignUp(c *gin.Context) {
@@ -49,5 +50,23 @@ func (h *Handler) SignIn(c *gin.Context) {
 	c.JSON(http.StatusOK, entities.ResponseAuthUser{
 		Id:    id,
 		Token: token,
+	})
+}
+
+func (h *Handler) GetUserById(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		server.NewMessageErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	user, err := h.service.Authorization.GetUserById(id)
+	if err != nil {
+		server.NewMessageErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"User": user,
 	})
 }

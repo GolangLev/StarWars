@@ -48,3 +48,7 @@ func (a *AuthService) SignInUser(login, password string) (string, error) {
 func (a *AuthService) GetUserByLoginAndPassword(login, password string) (int, error) {
 	return a.repo.GetUserByLoginAndPassword(login, _user.HashPassword(password))
 }
+
+func (a *AuthService) GetUserById(userId int) (entities.Users, error) {
+	return a.repo.GetUserById(userId)
+}
