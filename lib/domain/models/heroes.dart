@@ -1,6 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:star_wars_front/domain/models/fractions.dart';
 
-///[Hero] модель имитирующая структуру HeroJoin, а также таблицу в базе данных Heroes
+/// # [Heroes] class
+/// модель имитирующая структуру HeroJoin,
+/// а также таблицу в базе данных Heroes
+/// * [id] - номер записи в таблице
+/// * [name] - имя персонажа
+/// * [description] - описание персонажа
+/// * [nameFraction] - фракция в которой он состоит [Fraction]
 class Heroes extends Equatable {
   const Heroes._({
     required this.id,
@@ -27,10 +34,18 @@ class Heroes extends Equatable {
         nameFraction: nameFraction ?? this.description);
   }
 
+  String get displayTitle {
+    if (nameFraction.isNotEmpty && name.isNotEmpty) {
+      return nameFraction + ":" + name;
+    } else {
+      return id as String;
+    }
+  }
+
   @override
   List<Object?> get props => [id, name, description, nameFraction];
 
-  ///[Heroes.fromJSON(json)]
+  /// # [Heroes.fromJSON(json)]
   ///Для возвращения данных из модели.
   ///Получение данных отправленных API в формате JSON.
   Heroes.fromJSON(dynamic json)
@@ -39,7 +54,7 @@ class Heroes extends Equatable {
         description = json['description'],
         nameFraction = json['name_fraction'];
 
-  ///[toJson]
+  /// # [toJson]
   ///Для отправки данных в формате JSON (POST, PUT, DELETE)
   Map<String, dynamic> toJson() {
     var json = <String, dynamic>{};
@@ -52,11 +67,24 @@ class Heroes extends Equatable {
   }
 }
 
+/// # [ResponseHeroAll] class
+/// для получения всех записей из таблицы [Heroes]
 class ResponseHeroAll extends Equatable {
   final List<Heroes> hero;
 
   ResponseHeroAll.fromJson(dynamic json)
       : hero = (json['Hero'] as List).map((e) => Heroes.fromJSON(e)).toList();
+
+  @override
+  List<Object?> get props => [hero];
+}
+
+class ResponseHero extends Equatable {
+  final Heroes hero;
+
+  const ResponseHero({required this.hero});
+
+  ResponseHero.fromJson(dynamic json) : hero = Heroes.fromJSON(json['Hero']);
 
   @override
   List<Object?> get props => [hero];

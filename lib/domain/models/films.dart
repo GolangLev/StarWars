@@ -1,6 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-///[Film] модель имитирующая структуру Film, а также таблицу в базе данных Films
+/// # [Film] class
+///модель имитирующая структуру Film,
+///а также таблицу в базе данных Films
+/// * [id] - номер записи в таблице
+/// * [title] - название фильма(заголовок)
+/// * [subTitle] - краткое описание фильма
+/// * [description] - полное описание фильма
+/// * [years] - год выпуска
 class Film extends Equatable {
   const Film._({
     required this.id,
@@ -31,10 +38,18 @@ class Film extends Equatable {
     );
   }
 
+  String get displayTitle {
+    if (title.isNotEmpty && subTitle.isNotEmpty) {
+      return subTitle + ":" + title;
+    } else {
+      return id as String;
+    }
+  }
+
   @override
   List<Object?> get props => [id, title, subTitle, description, years];
 
-  ///[Film.fromJSON(json)]
+  /// # [Film.fromJSON(json)]
   ///Для возвращения данных из модели.
   ///Получение данных отправленных API в формате JSON.
   Film.fromJSON(dynamic json)
@@ -44,7 +59,7 @@ class Film extends Equatable {
         description = json['description'],
         years = json['years'];
 
-  ///[toJSON]
+  /// # [toJSON]
   ///Для отправки данных в формате JSON (POST, PUT, DELETE)
   Map<String, dynamic> toJSON() {
     var json = <String, dynamic>{};
@@ -57,11 +72,26 @@ class Film extends Equatable {
   }
 }
 
+/// # [ResponseFilmsAll] class
+///для получения всех записей из таблицы [Film]
 class ResponseFilmsAll extends Equatable {
   final List<Film> film;
 
   ResponseFilmsAll.fromJson(dynamic json)
       : film = (json['Film'] as List).map((e) => Film.fromJSON(e)).toList();
+
+  @override
+  List<Object?> get props => [film];
+}
+
+/// # [ResponseFilm] class
+///для получения данных о конкретной записи из таблицы [Film]
+class ResponseFilm extends Equatable {
+  final Film film;
+
+  const ResponseFilm({required this.film});
+
+  ResponseFilm.fromJson(dynamic json) : film = Film.fromJSON(json['Film']);
 
   @override
   List<Object?> get props => [film];

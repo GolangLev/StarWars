@@ -1,5 +1,3 @@
-import 'package:star_wars_front/domain/models/films.dart';
-
 ///[IRepoFilm] abstract class(interface) набор методов для работы с базой данных
 abstract class IRepoFilm{
   Future getAllFilms();

@@ -1,6 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-///[Game] модель имитирующая структуру Game, а также таблицу в базе данных Games
+/// # [Game] class
+///модель имитирующая структуру Game,
+///а также таблицу в базе данных Games
+/// * [id] - номер записи в таблице
+/// * [title] - название игры(заголовок)
+/// * [subTitle] - краткое описание
+/// * [description] - полное описание
 class Game extends Equatable {
   const Game._({
     required this.id,
@@ -27,10 +33,18 @@ class Game extends Equatable {
         description: description ?? this.description);
   }
 
+  String get displayTitle {
+    if (title.isNotEmpty && subTitle.isNotEmpty) {
+      return subTitle + ":" + title;
+    } else {
+      return id as String;
+    }
+  }
+
   @override
   List<Object?> get props => [id, title, subTitle, description];
 
-  ///[Game.fromJSON(json)]
+  /// # [Game.fromJSON(json)]
   ///Для возвращения данных из модели.
   ///Получение данных отправленных API в формате JSON.
   Game.fromJSON(dynamic json)
@@ -39,7 +53,7 @@ class Game extends Equatable {
         subTitle = json['sub_title'],
         description = json['description'];
 
-  ///[toJSON]
+  /// # [toJSON]
   ///Для отправки данных в формате JSON (POST, PUT, DELETE)
   Map<String, dynamic> toJSON() {
     var json = <String, dynamic>{};
@@ -52,11 +66,26 @@ class Game extends Equatable {
   }
 }
 
+/// # [ResponseGameAll] class
+/// для получения всех записей из таблицы [Game]
 class ResponseGameAll extends Equatable {
   final List<Game> game;
 
   ResponseGameAll.fromJson(dynamic json)
       : game = (json['Game'] as List).map((e) => Game.fromJSON(e)).toList();
+
+  @override
+  List<Object?> get props => [game];
+}
+
+/// # [ResponseGame] class
+/// для получения конкретной записи из таблицы [Game]
+class ResponseGame extends Equatable {
+  final Game game;
+
+  const ResponseGame({required this.game});
+
+  ResponseGame.fromJson(dynamic json) : game = Game.fromJSON(json['Game']);
 
   @override
   List<Object?> get props => [game];

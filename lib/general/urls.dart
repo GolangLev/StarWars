@@ -1,5 +1,10 @@
+/// ## [Urls] класс содержащий адреса для отправки REST запросов
 class Urls{
   Urls._();
+
+static const signUp = 'http://127.0.0.1:8000/auth/auth-user/sign-up';
+static const signIn = 'http://127.0.0.1:8000/auth/auth-user/sign-in';
+static const userId = 'http://127.0.0.1:8000/auth/auth-user/user/';
 
 static const news = 'http://127.0.0.1:8000/';
 static const newsId = 'http://127.0.0.1:8000/news/';

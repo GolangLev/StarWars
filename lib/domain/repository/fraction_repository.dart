@@ -4,7 +4,7 @@ import 'package:star_wars_front/domain/models/fractions.dart';
 import 'package:star_wars_front/domain/repository/interfaces/i_fraction_repository.dart';
 import 'package:star_wars_front/general/urls.dart';
 
-///[FractionRepository] class имплементирующий abstract class(interface) [IRepoFraction]
+/// ## [FractionRepository] class имплементирующий abstract class(interface) [IRepoFraction]
 class FractionRepository implements IRepoFraction {
 
   ///[logger] вывод логов в консоль для отладки
@@ -17,7 +17,6 @@ class FractionRepository implements IRepoFraction {
     try {
       final response = await Dio().get(url);
       if (response.statusCode == 200) {
-        logger.i("Repository GetAllFractions Response: $response");
         return ResponseFractionAll.fromJson(response.data);
       } else {
         logger.e("Repository GetAllFractions, StatusCode != 200");
@@ -35,9 +34,7 @@ class FractionRepository implements IRepoFraction {
       final response = await Dio().get(url);
 
       if (response.statusCode == 200) {
-        logger.i("Repository GetFractionById Response: $response");
-
-        return Fraction.fromJSON(response.data);
+        return ResponseFraction.fromJson(response.data);
       } else {
         logger.e("Status code != 200: $response");
       }

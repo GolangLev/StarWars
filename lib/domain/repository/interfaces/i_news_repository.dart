@@ -1,6 +1,4 @@
-import 'package:star_wars_front/domain/models/news.dart';
-
-///[IRepoNews] abstract class(interface) набор методов для работы с базой данных
+/// ## [IRepoNews] abstract class(interface) набор методов для работы с базой данных
 abstract class IRepoNews{
   Future getAllNews();
   Future getNewsById(int id);

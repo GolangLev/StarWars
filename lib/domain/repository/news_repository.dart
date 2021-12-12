@@ -4,7 +4,7 @@ import 'package:star_wars_front/domain/models/news.dart';
 import 'package:star_wars_front/domain/repository/interfaces/i_news_repository.dart';
 import 'package:star_wars_front/general/urls.dart';
 
-///[NewsRepository] class имплементирующий abstract class(interface) [IRepoNews]
+/// ## [NewsRepository] class имплементирующий abstract class(interface) [IRepoNews]
 class NewsRepository implements IRepoNews {
 
   ///[logger] вывод логов в консоль для отладки
@@ -18,7 +18,6 @@ class NewsRepository implements IRepoNews {
     try {
       final response = await Dio().get(url);
       if (response.statusCode == 200) {
-        logger.i("Repository GetAllNews Response: $response");
         return ResponseNewsAll.fromJson(response.data);
       } else {
         logger.e("Repository GetAllNews, StatusCode != 200");
@@ -37,9 +36,7 @@ class NewsRepository implements IRepoNews {
       final response = await Dio().get(url);
 
       if (response.statusCode == 200) {
-        logger.i("Repository GetNewsById Response: $response");
-
-        return News.fromJSON(response.data);
+        return ResponseNews.fromJson(response.data);
       } else {
         logger.e("Status code != 200: $response");
       }

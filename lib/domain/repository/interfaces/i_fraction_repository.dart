@@ -1,6 +1,4 @@
-import 'package:star_wars_front/domain/models/fractions.dart';
-
-///[IRepoFraction] abstract class(interface) набор методов для работы с базой данных
+/// ## [IRepoFraction] abstract class(interface) набор методов для работы с базой данных
 abstract class IRepoFraction{
   Future getAllFractions();
   Future getFractionById(int id);
