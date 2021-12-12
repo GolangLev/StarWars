@@ -24,6 +24,9 @@ func NewAuthService(repo repository.Authorization) *AuthService {
 }
 
 func (a *AuthService) CreateUser(user entities.Users) (int, error) {
+	if err := user.Validate(); err != nil {
+		return 0, err
+	}
 	user.Password = user.HashPassword(user.Password)
 	return a.repo.CreateUser(user)
 }

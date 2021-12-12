@@ -2,6 +2,7 @@ package entities
 
 import (
 	"crypto/sha1"
+	"errors"
 	"fmt"
 )
 
@@ -33,4 +34,11 @@ type SignInInput struct {
 type ResponseAuthUser struct {
 	Id    int    `json:"user_id"`
 	Token string `json:"token"`
+}
+
+func (u Users) Validate() error {
+	if u.NickName == "" && u.Side == "" && u.Rank == "" && u.ColorSword == "" && u.TypeSword == "" && u.Login == "" && u.Password == "" {
+		return errors.New("create structure has no values")
+	}
+	return nil
 }
