@@ -33,7 +33,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	main := router.Group("/")
 	{
-		main.GET("/", h.GetAllNews)
+		main.GET("/news", h.GetAllNews)
 		main.GET("/news/:id", h.GetNewsById)
 
 		api := main.Group("/api")
