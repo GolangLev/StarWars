@@ -33,7 +33,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	main := router.Group("/")
 	{
-		main.GET("/auth-user/user/:id", h.GetUserById)
 		main.GET("/news", h.GetAllNews)
 		main.GET("/news/:id", h.GetNewsById)
 
