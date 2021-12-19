@@ -38,9 +38,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		api := main.Group("/api")
 		{
-			api.POST("/CreateNews", h.CreateNews)
-			api.PUT("/UpdateNews/:id", h.UpdateNews)
-			api.DELETE("/DeleteNews/:id", h.DeleteNews)
+			api.POST("/news/CreateNews", h.CreateNews)
+			api.PUT("/news/UpdateNews/:id", h.UpdateNews)
+			api.DELETE("/news/DeleteNews/:id", h.DeleteNews)
 		}
 
 		game := main.Group("/game")
@@ -113,7 +113,7 @@ func CORSMiddleware() gin.HandlerFunc {
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Credentials", "true")
 		c.Header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
-		c.Header("Access-Control-Allow-Methods", "POST,HEAD,PATCH, OPTIONS, GET, PUT")
+		c.Header("Access-Control-Allow-Methods", "POST,HEAD,PATCH, OPTIONS, GET, PUT, DELETE")
 
 		if c.Request.Method == "OPTIONS" {
 			c.AbortWithStatus(http.StatusNoContent)
