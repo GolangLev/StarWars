@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
+	"net/http"
 )
 
 type Handler struct {
@@ -26,9 +27,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	auth := router.Group("/auth")
 	{
-		auth.POST("/auth-user/sign-up", h.SignUp)
-		auth.POST("/auth-user/sign-in", h.SignIn)
-		auth.GET("/auth-user/user/:id", h.GetUserById)
+		auth.POST("/sign-up", h.SignUp)
+		auth.POST("/sign-in", h.SignIn)
 	}
 
 	main := router.Group("/")
@@ -95,6 +95,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			}
 		}
 
+		profile := main.Group("/auth-user", h.UserIdentity)
+		{
+			profile.GET("/user", h.GetUserById)
+			profile.GET("/user/:id", h.GetUserProfile)
+			profile.POST("/CreateComment", h.CreateComment)
+			profile.PUT("/UpdateProfile/:id", h.UpdateProfile)
+		}
 	}
 
 	return router
@@ -109,7 +116,7 @@ func CORSMiddleware() gin.HandlerFunc {
 		c.Header("Access-Control-Allow-Methods", "POST,HEAD,PATCH, OPTIONS, GET, PUT")
 
 		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(204)
+			c.AbortWithStatus(http.StatusNoContent)
 			return
 		}
 

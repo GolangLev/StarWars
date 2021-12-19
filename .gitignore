@@ -1,6 +1,5 @@
 .gitignore
 .env
 configs
-internal
 go.mod
 go.sum

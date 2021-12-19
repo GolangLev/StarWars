@@ -42,3 +42,19 @@ func (u Users) Validate() error {
 	}
 	return nil
 }
+
+type UpdateProfile struct {
+	NickName   *string `json:"nick_name" db:"nick_name"`
+	Side       *string `json:"side" db:"side"`
+	Rank       *string `json:"rank" db:"rank"`
+	ColorSword *string `json:"color_sword" db:"color_sword"`
+	TypeSword  *string `json:"type_sword" db:"type_sword"`
+}
+
+func (u UpdateProfile) ValidateData() error {
+	if u.NickName == nil && u.Side == nil && u.Rank == nil && u.ColorSword == nil && u.TypeSword == nil {
+		return errors.New("update structure has no values")
+	}
+
+	return nil
+}

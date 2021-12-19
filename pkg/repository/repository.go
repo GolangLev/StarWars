@@ -9,7 +9,6 @@ type Authorization interface {
 	CreateUser(user entities.Users) (int, error)
 	GetUser(login, password string) (entities.Users, error)
 	GetUserByLoginAndPassword(login, password string) (int, error)
-	GetUserById(userId int) (entities.Users, error)
 }
 
 type Games interface {
@@ -52,6 +51,15 @@ type News interface {
 	UpdateNews(newsId int, news entities.UpdateNews) error
 }
 
+type Comments interface {
+	CreateComment(comment entities.Comments) (int, error)
+}
+
+type Profile interface {
+	GetUserById(userId int) (entities.Users, error)
+	UpdateProfile(userId int, user entities.UpdateProfile) error
+}
+
 type Repository struct {
 	Games
 	Films
@@ -59,6 +67,8 @@ type Repository struct {
 	Fractions
 	News
 	Authorization
+	Comments
+	Profile
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
@@ -69,5 +79,7 @@ func NewRepository(db *sqlx.DB) *Repository {
 		Films:         NewFilmsRepository(db),
 		Fractions:     NewFractionRepository(db),
 		Authorization: NewAuthRepository(db),
+		Comments:      NewCommentsRepository(db),
+		Profile:       NewProfileRepository(db),
 	}
 }

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"github.com/GolangLev/Goland/StarWars/internal/entities"
 	"github.com/GolangLev/Goland/StarWars/internal/server"
 	"github.com/GolangLev/Goland/StarWars/pkg/repository"
@@ -52,6 +53,23 @@ func (a *AuthService) GetUserByLoginAndPassword(login, password string) (int, er
 	return a.repo.GetUserByLoginAndPassword(login, _user.HashPassword(password))
 }
 
-func (a *AuthService) GetUserById(userId int) (entities.Users, error) {
-	return a.repo.GetUserById(userId)
+func (a *AuthService) ParseToken(accessToken string) (int, error) {
+	token, err := jwt.ParseWithClaims(accessToken, &server.TokenClaims{}, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, errors.New("invalid signing method")
+		}
+
+		return []byte(signingKey), nil
+	})
+
+	if err != nil {
+		return 0, err
+	}
+
+	claims, ok := token.Claims.(*server.TokenClaims)
+	if !ok {
+		return 0, errors.New("token claims are not type *tokenClaims")
+	}
+
+	return claims.UserId, nil
 }

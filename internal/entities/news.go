@@ -13,3 +13,10 @@ type UpdateNews struct {
 	SubTitle    *string `json:"sub_title"`
 	Description *string `json:"description"`
 }
+
+type NewsJoin struct {
+	Title       string `json:"title" db:"title"`
+	SubTitle    string `json:"sub_title" db:"subtitle"`
+	Description string `json:"description" db:"description"`
+	Comment     string `json:"comment" db:"comment"`
+}

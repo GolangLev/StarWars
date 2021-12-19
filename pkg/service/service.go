@@ -9,7 +9,7 @@ type Authorization interface {
 	CreateUser(user entities.Users) (int, error)
 	SignInUser(login, password string) (string, error)
 	GetUserByLoginAndPassword(login, password string) (int, error)
-	GetUserById(userId int) (entities.Users, error)
+	ParseToken(accessToken string) (int, error)
 }
 
 type Games interface {
@@ -52,6 +52,15 @@ type News interface {
 	UpdateNews(newsId int, news entities.UpdateNews) error
 }
 
+type Comments interface {
+	CreateComment(comment entities.Comments) (int, error)
+}
+
+type Profile interface {
+	GetUserById(userId int) (entities.Users, error)
+	UpdateProfile(userId int, user entities.UpdateProfile) error
+}
+
 type Service struct {
 	Games
 	Films
@@ -59,6 +68,8 @@ type Service struct {
 	Fractions
 	News
 	Authorization
+	Comments
+	Profile
 }
 
 func NewService(repo *repository.Repository) *Service {
@@ -69,5 +80,7 @@ func NewService(repo *repository.Repository) *Service {
 		Films:         NewFilmService(repo.Films),
 		Fractions:     NewFractionService(repo.Fractions),
 		Authorization: NewAuthService(repo.Authorization),
+		Comments:      NewCommentsService(repo.Comments),
+		Profile:       NewProfileService(repo.Profile),
 	}
 }

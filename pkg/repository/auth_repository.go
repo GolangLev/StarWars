@@ -42,11 +42,3 @@ func (a *AuthRepository) GetUserByLoginAndPassword(login, password string) (int,
 
 	return id, err
 }
-
-func (a *AuthRepository) GetUserById(userId int) (entities.Users, error) {
-	var user entities.Users
-
-	query := fmt.Sprintf("SELECT * FROM %s WHERE id = $1", database.TableUsers)
-	err := a.db.Get(&user, query, userId)
-	return user, err
-}
