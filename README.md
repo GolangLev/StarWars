@@ -1,20 +1,14 @@
-# StarWars
+## Проект StarWars (Звездные войны)
+### Это небольшой проект в котором собрана некоторая база по этой вселенной:
+*   Новости   
+*   Игры
+*   Фильмы
+*   Герои из игр, герои из фильмов
+*   Фракции
 
-## Development
-> Golang
+Для реализации данного проекта использовались следующие технологии:
+*   Язык программирования Golang - выполнена Back-end часть
+*   Язык программирования Dart, кроссплатформенный фреймворк Flutter - выполнена Front-end часть.
 
-> Postgres
-
-> Repository pattern
-
-> Swagger
-
-## Frameworks
-
-- [Gin gonic](https://github.com/gin-gonic/gin)
-- [Viper](https://github.com/spf13/viper)
-- [Logrus](https://github.com/sirupsen/logrus)
-- [Files Env](https://github.com/joho/godotenv)
-- [DB Postgres](https://metanit.com/go/tutorial/10.3.php)
-- [DB Sqlx Extensions](https://github.com/jmoiron/sqlx)
-- [Swagger](https://github.com/swaggo/swag)
+Для того чтобы посмотреть код написанный на языке программирования Golang перейдите в ветку - StartWars
+Для того чтобы посмотреть код написанный на языке программирования Dart, Flutter перейдите в ветку - Flutter

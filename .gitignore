@@ -1,5 +1,0 @@
-.gitignore
-.env
-configs
-go.mod
-go.sum
