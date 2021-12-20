@@ -19,16 +19,6 @@ class ActionListItemNews extends StatelessWidget {
           Row(
             children: [
               Text(
-                '${news.id}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(width: 10),
-              Text(
                 news.displayTitle,
                 style: const TextStyle(
                   color: Colors.white,
