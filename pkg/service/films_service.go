@@ -14,6 +14,9 @@ func NewFilmService(repo repository.Films) *FilmService {
 }
 
 func (f *FilmService) CreateFilm(film entities.Film) (int, error) {
+	if err := film.Validate(); err != nil {
+		return 0, err
+	}
 	return f.repo.CreateFilm(film)
 }
 

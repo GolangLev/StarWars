@@ -1,5 +1,7 @@
 package entities
 
+import "errors"
+
 // News модель таблицы "news"
 type News struct {
 	Id          int    `json:"id" db:"id"`
@@ -19,4 +21,12 @@ type NewsJoin struct {
 	SubTitle    string `json:"sub_title" db:"subtitle"`
 	Description string `json:"description" db:"description"`
 	Comment     string `json:"comment" db:"comment"`
+}
+
+func (n News) Validate() error {
+	if n.Title == "" && n.SubTitle == "" && n.Description == "" {
+		return errors.New("create structure has no values")
+	}
+
+	return nil
 }

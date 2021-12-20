@@ -1,5 +1,7 @@
 package entities
 
+import "errors"
+
 // Film модель таблицы "films"
 type Film struct {
 	Id          int    `json:"id" db:"id"`
@@ -22,4 +24,11 @@ type FilmJoin struct {
 	Description string `json:"description" db:"description"`
 	Years       string `json:"years" db:"years"`
 	Comment     string `json:"comment" db:"comment"`
+}
+
+func (f Film) Validate() error {
+	if f.Title == "" && f.SubTitle == "" && f.Description == "" && f.Years == "" {
+		return errors.New("create structure has no values")
+	}
+	return nil
 }

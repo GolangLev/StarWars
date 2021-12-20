@@ -14,6 +14,9 @@ func NewNewsService(repo repository.News) *NewsService {
 }
 
 func (n *NewsService) CreateNews(news entities.News) (int, error) {
+	if err := news.Validate(); err != nil {
+		return 0, err
+	}
 	return n.repo.CreateNews(news)
 }
 
