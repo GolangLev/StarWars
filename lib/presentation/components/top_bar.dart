@@ -58,10 +58,11 @@ class TopBar extends StatelessWidget {
               ),
               IconItemButton(
                 icon: Icon(
-                  Icons.person_outlined,
-                  color: Color(0xFf30BDC6),
+                  Icons.settings_outlined,
+                  //color: Color(0xFf30BDC6),
+                  color: Colors.redAccent,
                 ),
-                navigationPath: '/profile',
+                navigationPath: '/action',
               ),
               IconItemButton(
                 icon: Icon(

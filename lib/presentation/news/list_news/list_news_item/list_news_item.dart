@@ -28,7 +28,7 @@ class _ListNewsItemState extends State<ListNewsItem> {
       },
       child: AnimatedContainer(
         width: 300, //300
-        height: 400, //400
+        height: 450, //400
         margin: EdgeInsets.all(widget.margin),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 1),

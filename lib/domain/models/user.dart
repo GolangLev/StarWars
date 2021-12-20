@@ -121,8 +121,17 @@ class ResponseAuthUser extends Equatable {
   @override
   List<Object?> get props => [id, token];
 
-  /// # [ResponseAuthUser.fromJson(json)] метод
-  /// метод для получения данных отправленных с сервера REST API
+  factory ResponseAuthUser.createEmpty() {
+    return const ResponseAuthUser(id: 0, token: "token");
+  }
+
+  ResponseAuthUser copyWith({
+    int? id,
+    String? token,
+  }) {
+    return ResponseAuthUser(id: id ?? this.id, token: token ?? this.token);
+  }
+
   ResponseAuthUser.fromJson(dynamic json)
       : id = json['user_id'],
         token = json['token'];
@@ -136,10 +145,24 @@ class SignInInput extends Equatable {
   final String login;
   final String password;
 
-  const SignInInput({required this.login, required this.password});
+  const SignInInput._({required this.login, required this.password});
 
   @override
   List<Object?> get props => [login, password];
+
+  SignInInput copyWith({
+    String? login,
+    String? password,
+  }) {
+    return SignInInput._(
+      login: login ?? this.login,
+      password: password ?? this.password,
+    );
+  }
+
+  factory SignInInput.createEmpty() {
+    return const SignInInput._(login: "", password: "");
+  }
 
   /// # [toJSON]
   ///Для отправки данных в формате JSON (POST, PUT, DELETE)
@@ -151,4 +174,17 @@ class SignInInput extends Equatable {
 
     return json;
   }
+}
+
+/// ## [ResponseUser] class
+/// для получения данных о конкретном пользователе из [User]
+class ResponseUser extends Equatable {
+  final User user;
+
+  const ResponseUser({required this.user});
+
+  ResponseUser.fromJson(dynamic json) : user = User.fromJson(json['User']);
+
+  @override
+  List<Object?> get props => [user];
 }

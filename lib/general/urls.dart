@@ -1,16 +1,16 @@
 /// ## [Urls] класс содержащий адреса для отправки REST запросов
 class Urls{
   Urls._();
-
+static const main = 'http://127.0.0.1:8000';
 static const signUp = 'http://127.0.0.1:8000/auth/auth-user/sign-up';
 static const signIn = 'http://127.0.0.1:8000/auth/auth-user/sign-in';
 static const userId = 'http://127.0.0.1:8000/auth/auth-user/user/';
 
-static const news = 'http://127.0.0.1:8000/';
+static const news = 'http://127.0.0.1:8000/news';
 static const newsId = 'http://127.0.0.1:8000/news/';
-static const createNews = 'http://127.0.0.1:8000/api/CreateNews';
-static const updateNews = 'http://127.0.0.1:8000/api/UpdateNews/';
-static const deleteNews = 'http://127.0.0.1:8000/api/DeleteNews/';
+static const createNews = 'http://127.0.0.1:8000/api/news/CreateNews';
+static const updateNews = 'http://127.0.0.1:8000/api/news/UpdateNews/';
+static const deleteNews = 'http://127.0.0.1:8000/api/news/DeleteNews/';
 
 static const game = 'http://127.0.0.1:8000/game/';
 static const gameId = 'http://127.0.0.1:8000/game/';

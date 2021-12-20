@@ -7,13 +7,13 @@ class NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<NavigationMenuItem> navigationMenuItem = [
-       const NavigationMenuItem(
+      const NavigationMenuItem(
         icon: Icon(
-          Icons.person_outlined,
+          Icons.settings_outlined,
           color: Colors.redAccent,
         ),
-        nameItem: 'Профиль',
-         navigationPath: '/profile',
+        nameItem: 'Действия',
+        navigationPath: '/action',
       ),
       const NavigationMenuItem(
         icon: Icon(
@@ -69,9 +69,7 @@ class NavigationBar extends StatelessWidget {
         border: Border(right: BorderSide(color: Colors.white)),
       ),
       child: Column(
-        children: [
-          ...navigationMenuItem
-        ],
+        children: [...navigationMenuItem],
       ),
     );
   }

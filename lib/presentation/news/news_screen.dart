@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_wars_front/domain/bloc/news_bloc/list_news_bloc/news_cubit.dart';
@@ -13,11 +14,20 @@ class NewsScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsCubit, NewsState>(builder: (context, state) {
       if (state is NewsStateNothing) {
-        return const Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(
-              color: Colors.white,
-            ),
+        return Scaffold(
+          body: Column(
+            children: const [
+              TopBar(
+                title: 'Вселенная',
+              ),
+              Expanded(
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       } else if (state is NewsStateLoaded) {
@@ -40,12 +50,11 @@ class NewsScreenPage extends StatelessWidget {
         );
       } else {
         return const Scaffold(
-
             body: Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
-            ));
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        ));
       }
     });
   }

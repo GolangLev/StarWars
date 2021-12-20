@@ -9,7 +9,6 @@ class MainScreenPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -26,7 +25,9 @@ class MainScreenPage extends StatelessWidget {
             SizedBox(height: 15),
             InfoWidget(),
             SizedBox(height: 100),
-            Center(child: CarouselSliderWidget(),)
+            Center(
+              child: CarouselSliderWidget(),
+            )
           ],
         ),
       ),

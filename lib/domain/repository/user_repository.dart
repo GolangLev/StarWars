@@ -12,13 +12,39 @@ class UserRepository implements IRepoUser {
   final logger = Logger();
 
   @override
-  Future getUserById(int userId) {
-    throw UnimplementedError();
+  Future getUserById(int userId) async {
+    final url = Urls.userId + '$userId';
+
+    try {
+      final response = await Dio().get(url);
+
+      if (response.statusCode == 200) {
+        logger.i("Repository GetUserById User.fromJson(response.data): ${User.fromJson(response.data)}");
+        return ResponseUser.fromJson(response.data);
+      } else {
+        logger.e("Repository GetUserById: StatusCode != 200");
+      }
+    } catch (error) {
+      logger.e("Repository GetUserById: $error");
+    }
   }
 
   @override
-  Future signIn(String login, String password) {
-    throw UnimplementedError();
+  Future signIn(SignInInput signInInput) async {
+    final url = Urls.signIn;
+
+    try {
+      final response =
+          await Dio().post(url, data: jsonEncode(signInInput.toJson()));
+
+      if (response.statusCode == 200) {
+        logger.i(
+            "ResponseAuthUser.fromJson(response.data) ${ResponseAuthUser.fromJson(response.data)}");
+        return ResponseAuthUser.fromJson(response.data);
+      }
+    } catch (error) {
+      logger.e("Repository SignIn: $error");
+    }
   }
 
   @override

@@ -12,9 +12,8 @@ class SplashScreenPage extends StatefulWidget {
 class _SplashScreenPageState extends State<SplashScreenPage> {
 
   _startTimer(){
-    ///TODO изменить микросекунды на секунды, 1 на 5
-    Timer(const Duration(microseconds: 1), (){
-      Navigator.of(context).pushNamed('/user_action');
+    Timer(const Duration(seconds: 5), (){
+      Navigator.of(context).pushNamed('/home');
     });
   }
 

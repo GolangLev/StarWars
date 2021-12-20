@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:star_wars_front/domain/bloc/auth_bloc/authorization/authorization_cubit.dart';
 import 'package:star_wars_front/domain/bloc/auth_bloc/registration/registration_cubit.dart';
 import 'package:star_wars_front/domain/bloc/decoration_bloc/decoration_bloc_cubit.dart';
 import 'package:star_wars_front/domain/bloc/film_bloc/detail_film_bloc/detail_film_cubit.dart';
@@ -23,6 +24,7 @@ import 'package:star_wars_front/domain/repository/game_repository.dart';
 import 'package:star_wars_front/domain/repository/hero_repository.dart';
 import 'package:star_wars_front/domain/repository/news_repository.dart';
 import 'package:star_wars_front/domain/repository/user_repository.dart';
+import 'package:star_wars_front/presentation/action/action_records.dart';
 import 'package:star_wars_front/presentation/error/error_screen.dart';
 import 'package:star_wars_front/presentation/film/detail_film/detail_film.dart';
 import 'package:star_wars_front/presentation/film/film_screen.dart';
@@ -36,28 +38,60 @@ import 'package:star_wars_front/presentation/home/home_screen.dart';
 import 'package:star_wars_front/presentation/main_action/main_action_screen.dart';
 import 'package:star_wars_front/presentation/news/detail_news/detail_news.dart';
 import 'package:star_wars_front/presentation/news/news_screen.dart';
-import 'package:star_wars_front/presentation/profile/profile_screen.dart';
 import 'package:star_wars_front/presentation/splash/splash_screen.dart';
+
+NewsRepository newsRepository = NewsRepository();
+HeroRepository heroRepository = HeroRepository();
+GameRepository gameRepository = GameRepository();
+FractionRepository fractionRepository = FractionRepository();
+FilmRepository filmRepository = FilmRepository();
+UserRepository userRepository = UserRepository();
 
 class AppGenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-    NewsRepository newsRepository = NewsRepository();
-    HeroRepository heroRepository = HeroRepository();
-    GameRepository gameRepository = GameRepository();
-    FractionRepository fractionRepository = FractionRepository();
-    FilmRepository filmRepository = FilmRepository();
-    UserRepository userRepository = UserRepository();
     final args = settings.arguments;
 
     switch (settings.name) {
       case '/':
         return _getPageRote(const SplashScreenPage());
       case '/user_action':
-        return _getPageRote(BlocProvider(
-            create: (_) => RegistrationCubit(userRepository: userRepository),
-            child: const MainActionScreenPage()));
+        return _getPageRote(MultiBlocProvider(providers: [
+          BlocProvider(
+            create: (context) =>
+                AuthorizationCubit(userRepository: userRepository),
+            lazy: false,
+          ),
+          BlocProvider(
+            create: (context) =>
+                RegistrationCubit(userRepository: userRepository),
+            lazy: false,
+          ),
+        ], child: const MainActionScreenPage()));
       case '/home':
         return _getPageRote(const HomeScreenPage());
+      case '/action':
+        return _getPageRote(MultiBlocProvider(providers: [
+          BlocProvider(
+            create: (_) =>
+                NewsCubit(newsRepository: newsRepository)..getAllNews(),
+          ),
+          BlocProvider(
+            create: (_) =>
+                FilmCubit(filmRepository: filmRepository)..getAllFilms(),
+          ),
+          BlocProvider(
+            create: (_) =>
+                HeroCubit(heroRepository: heroRepository)..getAllHeroes(),
+          ),
+          BlocProvider(
+            create: (_) => FractionCubit(fractionRepository: fractionRepository)
+              ..getAllFractions(),
+          ),
+          BlocProvider(
+            create: (_) =>
+                GameCubit(gameRepository: gameRepository)..getAllGames(),
+          ),
+        ], child: const ActionRecords()));
       case '/news':
         return _getPageRote(BlocProvider(
             create: (_) =>
@@ -83,8 +117,6 @@ class AppGenerateRoute {
             create: (_) =>
                 GameCubit(gameRepository: gameRepository)..getAllGames(),
             child: const GameScreenPage()));
-      case '/profile':
-        return _getPageRote(const ProfileScreenPage());
       case '/detail_news':
         if (args is News) {
           return _getPageRote(

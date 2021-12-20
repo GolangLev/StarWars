@@ -4,12 +4,14 @@ class ConstructorInput extends StatelessWidget {
   final String label;
   final String message;
   final TextEditingController? controller;
+  final Color? color;
 
   const ConstructorInput({
     Key? key,
     required this.label,
     this.controller,
     required this.message,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -23,8 +25,8 @@ class ConstructorInput extends StatelessWidget {
         const EdgeInsets.only(left: 16, top: 16, bottom: 16),
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         labelText: label,
-        labelStyle: const TextStyle(
-          color: Colors.black,
+        labelStyle: TextStyle(
+          color: color,
           fontSize: 12,
           fontWeight: FontWeight.w400,
           fontStyle: FontStyle.normal,
@@ -65,7 +67,7 @@ class ConstructorInput extends StatelessWidget {
 
   _styleDropDownFormField(BuildContext context) {
     return const TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
       fontSize: 16,

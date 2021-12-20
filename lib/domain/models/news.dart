@@ -47,7 +47,7 @@ class News extends Equatable {
   /// # [News.fromJSON(json)]
   ///Для возвращения данных из модели.
   ///Получение данных отправленных API в формате JSON.
-  News.fromJSON(Map json)
+  News.fromJSON(dynamic json)
       : id = json['id'],
         title = json['title'],
         subTitle = json['sub_title'],
@@ -63,6 +63,10 @@ class News extends Equatable {
     json['description'] = description;
 
     return json;
+  }
+
+  factory News.createEmpty() {
+    return const News._(id: 0, title: "", subTitle: "", description: "");
   }
 }
 

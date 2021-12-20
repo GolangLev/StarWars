@@ -19,7 +19,6 @@ class ScorePost extends StatelessWidget {
             ToggleLike(
               isLike: (){
                 context.read<DecorationCubit>().toggleLike();
-                context.read<DecorationCubit>().toggleDisLike();
               },
               isChange: state.like,
             ),
@@ -27,7 +26,6 @@ class ScorePost extends StatelessWidget {
             ToggleDisLike(
               isDislike: (){
                 context.read<DecorationCubit>().toggleDisLike();
-                context.read<DecorationCubit>().toggleLike();
               },
               isChange: state.dislike,
             ),

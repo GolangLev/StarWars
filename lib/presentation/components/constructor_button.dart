@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 class ConstructorButton extends StatelessWidget {
   final String title;
   final bool isHover;
-  ///TODO Убрать указание необязательного параметра
-  final String? navigationPath;
-  final Object? argument;
-  const ConstructorButton({Key? key, required this.isHover, required this.title, this.navigationPath, this.argument}) : super(key: key);
+  final String navigationPath;
+  final Object argument;
+  const ConstructorButton({Key? key, required this.isHover, required this.title, required this.navigationPath, required this.argument}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(navigationPath!, arguments: argument);
+        Navigator.of(context).pushNamed(navigationPath, arguments: argument);
       },
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,

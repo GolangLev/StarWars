@@ -15,4 +15,9 @@ class NewsCubit extends Cubit<NewsState> {
     final news = await newsRepository.getAllNews();
     emit(NewsStateLoaded(news: news));
   }
+
+  void deleteNews(int id) async {
+    await newsRepository.deleteNews(id);
+    getAllNews();
+  }
 }

@@ -4,5 +4,5 @@ import 'package:star_wars_front/domain/models/user.dart';
 abstract class IRepoUser{
   Future signUp(User user);
   Future getUserById(int userId);
-  Future signIn(String login, String password);
+  Future signIn(SignInInput signInInput);
 }

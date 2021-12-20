@@ -27,8 +27,8 @@ class _ListFilmItemState extends State<ListFilmItem> {
         setState(() => widget.isHover = hover);
       },
       child: AnimatedContainer(
-        width: 300, //300
-        height: 400, //400
+        width: 300,
+        height: 400,
         margin: EdgeInsets.all(widget.margin),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 1),
