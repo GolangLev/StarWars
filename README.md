@@ -7,10 +7,6 @@
 
 > Repository pattern
 
-> HTML and Css
-
-> JavaScript 
-
 > Swagger
 
 ## Frameworks
